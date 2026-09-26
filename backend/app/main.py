@@ -51,6 +51,26 @@ async def apply_for_role(
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Failed to parse PDF: {str(e)}")
         
+    # Upload to Supabase Bucket if configured
+    try:
+        import os
+        from supabase import create_client
+        supabase_url = os.getenv("SUPABASE_URL")
+        supabase_key = os.getenv("SUPABASE_KEY")
+        bucket_name = os.getenv("SUPABASE_BUCKET")
+        
+        if supabase_url and supabase_key and bucket_name:
+            supabase = create_client(supabase_url, supabase_key)
+            file_path = f"{email}_{resume.filename}"
+            supabase.storage.from_(bucket_name).upload(
+                file=pdf_bytes,
+                path=file_path,
+                file_options={"content-type": resume.content_type}
+            )
+    except Exception as e:
+        print(f"Warning: Failed to upload resume to Supabase bucket: {e}")
+
+        
     # Create candidate
     new_candidate = models.Candidate(
         name=name,
