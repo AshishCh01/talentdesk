@@ -41,3 +41,7 @@ yarn-error.log*
 
 # Planning files (Requested by user)
 planning/
+
+docs/
+
+generate_pdfs.py
