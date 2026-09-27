@@ -3,7 +3,7 @@ import api from '../api';
 
 export default function ApplyPage() {
   const [roles, setRoles] = useState([]);
-  const [formData, setFormData] = useState({ name: '', email: '', role_id: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', role_id: '', expected_salary: '' });
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState(null);
 
@@ -22,6 +22,9 @@ export default function ApplyPage() {
     data.append('name', formData.name);
     data.append('email', formData.email);
     data.append('role_id', formData.role_id);
+    if (formData.expected_salary) {
+      data.append('expected_salary', formData.expected_salary);
+    }
     data.append('resume', file);
 
     setStatus({ type: 'loading', message: 'Submitting application...' });
@@ -30,7 +33,7 @@ export default function ApplyPage() {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setStatus({ type: 'success', message: 'Application submitted successfully!' });
-      setFormData({ name: '', email: '', role_id: '' });
+      setFormData({ name: '', email: '', role_id: '', expected_salary: '' });
       setFile(null);
     } catch (err) {
       setStatus({ type: 'error', message: err.response?.data?.detail || 'Application failed.' });
@@ -72,6 +75,14 @@ export default function ApplyPage() {
                 <option key={r.id} value={r.id}>{r.title} ({r.department})</option>
               ))}
             </select>
+          </div>
+          <div className="input-group">
+            <label>Expected Salary (Optional)</label>
+            <input 
+              type="number" 
+              value={formData.expected_salary} 
+              onChange={(e) => setFormData({...formData, expected_salary: e.target.value})} 
+            />
           </div>
           <div className="input-group">
             <label>Résumé (PDF)</label>

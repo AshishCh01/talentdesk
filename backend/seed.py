@@ -49,6 +49,7 @@ def seed_data():
             resume_text="Experienced backend engineer with 5 years of Python and Postgres.",
             notes="Strong technical skills. High salary expectation.",
             interview_score=8.5,
+            expected_salary=150000,
             status="interviewing"
         )
         c2 = Candidate(
@@ -58,6 +59,7 @@ def seed_data():
             resume_text="Product Manager focused on AI products and user growth.",
             notes="Good communication, but lacks technical depth.",
             interview_score=6.0,
+            expected_salary=160000,
             status="rejected"
         )
         c3 = Candidate(
@@ -67,6 +69,7 @@ def seed_data():
             resume_text="UI/UX designer with a portfolio of fintech apps.",
             notes="Excellent portfolio. Recommend making an offer.",
             interview_score=9.2,
+            expected_salary=130000,
             status="offered"
         )
         db.add_all([c1, c2, c3])

@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends, UploadFile, File, Form, HTTPException, Request
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 import asyncio
 from fastapi.middleware.cors import CORSMiddleware
@@ -28,6 +28,7 @@ async def apply_for_role(
     name: str = Form(...),
     email: str = Form(...),
     role_id: int = Form(...),
+    expected_salary: Optional[int] = Form(None),
     resume: UploadFile = File(...),
     db: Session = Depends(get_db)
 ):
@@ -77,6 +78,7 @@ async def apply_for_role(
         email=email,
         role_id=role_id,
         resume_text=resume_text,
+        expected_salary=expected_salary,
         status="applied"
     )
     db.add(new_candidate)

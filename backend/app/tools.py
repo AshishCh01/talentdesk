@@ -43,7 +43,7 @@ def get_tool_registry(db: Session):
         candidates = query.all()
         log_activity(db, "search_candidates", {"status": status, "role_id": role_id})
         return [
-            {"id": c.id, "name": c.name, "email": c.email, "role_id": c.role_id, "status": c.status, "interview_score": c.interview_score}
+            {"id": c.id, "name": c.name, "email": c.email, "role_id": c.role_id, "status": c.status, "interview_score": c.interview_score, "expected_salary": c.expected_salary}
             for c in candidates
         ]
 
@@ -57,6 +57,7 @@ def get_tool_registry(db: Session):
         return {
             "id": c.id, "name": c.name, "email": c.email, "role_id": c.role_id,
             "status": c.status, "notes": c.notes, "interview_score": c.interview_score,
+            "expected_salary": c.expected_salary,
             "resume_text": c.resume_text
         }
 

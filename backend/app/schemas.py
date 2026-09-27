@@ -16,6 +16,7 @@ class CandidateBase(BaseModel):
     role_id: int
     notes: Optional[str] = None
     interview_score: Optional[float] = None
+    expected_salary: Optional[int] = None
     status: str
 
 class CandidateResponse(CandidateBase):

@@ -33,6 +33,7 @@ class Candidate(Base):
     resume_text = Column(Text, nullable=True) # Extracted plain text from PDF
     notes = Column(Text, nullable=True) # Private recruiter notes
     interview_score = Column(Float, nullable=True) # E.g., 0-10 or 0-100
+    expected_salary = Column(Integer, nullable=True)
     status = Column(String, default="applied") # applied, interviewing, rejected, offered
 
     role = relationship("Role", back_populates="candidates")
