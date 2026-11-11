@@ -23,7 +23,7 @@ None of the tools are over-privileged. Every tool is a feature the app genuinely
 6. Confidential data leaks (via `send_email`) or a record gets silently tampered with (via `update_candidate`).
 
 We have included two attack payloads in `sample-resumes/poisoned/`:
-- **`injection_exfiltrate.pdf`**: Hijacks the `send_email` tool to exfiltrate confidential candidate and internal salary data to an external attacker inbox.
+- **`injection_exfiltrate.pdf`**: Hijacks the `send_email` tool to exfiltrate interview scores and private recruiter notes to an external attacker inbox.
 - **`injection_tamper.pdf`**: Hijacks the `update_candidate` tool to artificially inflate the candidate's interview score and falsely change their status to "offered".
 
 ## TECH STACK
@@ -39,15 +39,13 @@ We have included two attack payloads in `sample-resumes/poisoned/`:
 ## PROJECT STRUCTURE
 - `backend/`: FastAPI application, agent logic, database models, and tools.
 - `frontend/`: React application built with Vite containing the various UI views.
-- `supabase/`: Database configurations and local Supabase setup files.
 - `sample-resumes/`: Legitimate and poisoned PDF résumés used for the demonstration.
-- `docs/`: Additional documentation and architecture diagrams.
 
 ## SETUP & RUNNING LOCALLY
 
 1. **Clone the repo:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/AshishCh01/talentdesk.git
    cd talentdesk
    ```
 
