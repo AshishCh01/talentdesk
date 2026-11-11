@@ -100,7 +100,7 @@ def get_candidate(candidate_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Candidate not found")
     return candidate
 
-# --- DB Viewer Endpoints (Phase 2) ---
+# --- DB Viewer Endpoints ---
 
 @app.get("/db/roles", response_model=List[schemas.RoleResponse])
 def get_all_roles(db: Session = Depends(get_db)):
@@ -122,7 +122,7 @@ def get_all_inbox(db: Session = Depends(get_db)):
 def get_all_activity_log(db: Session = Depends(get_db)):
     return db.query(models.ActivityLog).all()
 
-# --- Copilot / Agent Endpoints (Phase 3) ---
+# --- Copilot / Agent Endpoints ---
 
 class ChatRequest(BaseModel):
     message: str
