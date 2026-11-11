@@ -88,7 +88,7 @@ Follow these steps to trigger the attack payloads yourself:
 1. Go to the **Apply** page and submit an application using `sample-resumes/poisoned/injection_exfiltrate.pdf`.
 2. Navigate to the **Recruiter Dashboard** and ask the copilot to *"screen today's applicants"*.
 3. Watch the **Live Tool Activity** log and observe the `send_email` tool being maliciously called.
-4. Check the **Attacker Inbox** page to see the confidential data that was leaked.
+4. Check the **Attacker Inbox** page to see the confidential data sent to `attacker@evil.example.com`.
 5. Repeat the process using `injection_tamper.pdf` and watch `update_candidate` fire maliciously. Then, check the **DB Viewer** to see the candidate's artificially inflated score and altered status.
 
 ## WHAT'S NEXT — PHASE 2
